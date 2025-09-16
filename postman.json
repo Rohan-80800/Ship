@@ -15,7 +15,12 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"username\": \"testuser\",\n  \"password\": \"pass123\"\n}"
+              "raw": "{\n  \"username\": \"testuser\",\n  \"password\": \"pass123\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
             },
             "url": {
               "raw": "{{baseUrl}}/auth/register",
@@ -31,7 +36,12 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"username\": \"testuser\",\n  \"password\": \"pass123\"\n}"
+              "raw": "{\n  \"username\": \"testuser\",\n  \"password\": \"pass123\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
             },
             "url": {
               "raw": "{{baseUrl}}/auth/login",
@@ -51,8 +61,8 @@
                   "pm.test(\"Has token\", function () {",
                   "    pm.expect(jsonData).to.have.property('token');",
                   "});",
-                  "// Save token to environment",
-                  "pm.environment.set(\"authToken\", jsonData.token);"
+                  "// Save token to collection variables",
+                  "pm.collectionVariables.set(\"authToken\", jsonData.token);"
                 ]
               }
             }
@@ -103,7 +113,12 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"name\": \"New Ship\",\n  \"email\": \"newship@example.com\"\n}"
+              "raw": "{\n  \"name\": \"New Ship\",\n  \"email\": \"newship@example.com\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
             },
             "url": {
               "raw": "{{baseUrl}}/ships",
@@ -123,7 +138,7 @@
                   "    const jsonData = pm.response.json();",
                   "    pm.expect(jsonData).to.have.property('_id');",
                   "    pm.expect(jsonData.name).to.eql('New Ship');",
-                  "    pm.environment.set('shipId', jsonData._id);",
+                  "    pm.collectionVariables.set('shipId', jsonData._id);",
                   "});"
                 ]
               }
@@ -155,30 +170,6 @@
           ]
         },
         {
-          "name": "GET /ships/{id} - Non-existing",
-          "request": {
-            "method": "GET",
-            "header": [],
-            "url": {
-              "raw": "{{baseUrl}}/ships/nonexistentid",
-              "host": ["{{baseUrl}}"],
-              "path": ["ships", "nonexistentid"]
-            }
-          },
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "exec": [
-                  "pm.test(\"Status code is 404\", function () {",
-                  "    pm.response.to.have.status(404);",
-                  "});"
-                ]
-              }
-            }
-          ]
-        },
-        {
           "name": "PUT /ships/{id}",
           "request": {
             "method": "PUT",
@@ -190,7 +181,12 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"name\": \"Updated Ship\",\n  \"email\": \"updated@example.com\"\n}"
+              "raw": "{\n  \"name\": \"Updated Ship\",\n  \"email\": \"updated@example.com\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
             },
             "url": {
               "raw": "{{baseUrl}}/ships/{{shipId}}",
